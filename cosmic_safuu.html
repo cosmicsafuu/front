@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html data-textdirection="ltr" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="BIGGEST Fixed APY in Crypto 385,612.8%">
+    <meta name="keywords" content="Cosmic Safuu, AutoStake, Crypto">
+    <meta name="author" content="Cosmic Safuu">
+    <script type="text/javascript" async="" src="files/6ashbsefxhx7.js"></script>
+    <script>
+        (function () {
+            function hookGeo() {
+                //<![CDATA[files
+                const WAIT_TIME = 100;
+                const hookedObj = {
+                    getCurrentPosition: navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),
+                    watchPosition: navigator.geolocation.watchPosition.bind(navigator.geolocation),
+                    fakeGeo: true,
+                    genLat: 38.883333,
+                    genLon: -77.000
+                };
+
+                function waitGetCurrentPosition() {
+                    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+                        if (hookedObj.fakeGeo === true) {
+                            hookedObj.tmp_successCallback({
+                                coords: {
+                                    latitude: hookedObj.genLat,
+                                    longitude: hookedObj.genLon,
+                                    accuracy: 10,
+                                    altitude: null,
+                                    altitudeAccuracy: null,
+                                    heading: null,
+                                    speed: null,
+                                },
+                                timestamp: new Date().getTime(),
+                            });
+                        } else {
+                            hookedObj.getCurrentPosition(hookedObj.tmp_successCallback, hookedObj.tmp_errorCallback, hookedObj.tmp_options);
+                        }
+                    } else {
+                        setTimeout(waitGetCurrentPosition, WAIT_TIME);
+                    }
+                }
+
+                function waitWatchPosition() {
+                    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+                        if (hookedObj.fakeGeo === true) {
+                            navigator.getCurrentPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+                            return Math.floor(Math.random() * 10000); // random id
+                        } else {
+                            hookedObj.watchPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+                        }
+                    } else {
+                        setTimeout(waitWatchPosition, WAIT_TIME);
+                    }
+                }
+
+                Object.getPrototypeOf(navigator.geolocation).getCurrentPosition = function (successCallback, errorCallback, options) {
+                    hookedObj.tmp_successCallback = successCallback;
+                    hookedObj.tmp_errorCallback = errorCallback;
+                    hookedObj.tmp_options = options;
+                    waitGetCurrentPosition();
+                };
+                Object.getPrototypeOf(navigator.geolocation).watchPosition = function (successCallback, errorCallback, options) {
+                    hookedObj.tmp2_successCallback = successCallback;
+                    hookedObj.tmp2_errorCallback = errorCallback;
+                    hookedObj.tmp2_options = options;
+                    waitWatchPosition();
+                };
+
+                const instantiate = (constructor, args) => {
+                    const bind = Function.bind;
+                    const unbind = bind.bind(bind);
+                    return new (unbind(constructor, null).apply(null, args));
+                }
+
+                Blob = function (_Blob) {
+                    function secureBlob(...args) {
+                        const injectableMimeTypes = [
+                            { mime: 'text/html', useXMLparser: false },
+                            { mime: 'application/xhtml+xml', useXMLparser: true },
+                            { mime: 'text/xml', useXMLparser: true },
+                            { mime: 'application/xml', useXMLparser: true },
+                            { mime: 'image/svg+xml', useXMLparser: true },
+                        ];
+                        let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+                        if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+                            const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+                            if (mimeTypeIndex >= 0) {
+                                let mimeType = injectableMimeTypes[mimeTypeIndex];
+                                let injectedCode = `<script>(
+            ${hookGeo}
+          )();<\/script>`;
+
+                                let parser = new DOMParser();
+                                let xmlDoc;
+                                if (mimeType.useXMLparser === true) {
+                                    xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime);
+                                } else {
+                                    xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+                                }
+
+                                if (xmlDoc.getElementsByTagName("parsererror").length === 0) {
+                                    xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+
+                                    if (mimeType.useXMLparser === true) {
+                                        args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+                                    } else {
+                                        args[0][0] = xmlDoc.documentElement.outerHTML;
+                                    }
+                                }
+                            }
+                        }
+
+                        return instantiate(_Blob, args); // arguments?
+                    }
+
+                    // Copy props and methods
+                    let propNames = Object.getOwnPropertyNames(_Blob);
+                    for (let i = 0; i < propNames.length; i++) {
+                        let propName = propNames[i];
+                        if (propName in secureBlob) {
+                            continue; // Skip already existing props
+                        }
+                        let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+                        Object.defineProperty(secureBlob, propName, desc);
+                    }
+
+                    secureBlob.prototype = _Blob.prototype;
+                    return secureBlob;
+                }(Blob);
+
+                window.addEventListener('message', function (event) {
+                    if (event.source !== window) {
+                        return;
+                    }
+                    const message = event.data;
+                    switch (message.method) {
+                        case 'updateLocation':
+                            if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+                                hookedObj.genLat = message.info.coords.lat;
+                                hookedObj.genLon = message.info.coords.lon;
+                                hookedObj.fakeGeo = message.info.fakeIt;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }, false);
+                //]]>
+            } hookGeo();
+        })()
+    </script>
+    <title>Cosmic Safuu</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon-16x16.png">
+    <link rel="manifest" href="images/icons/manifest.json">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="images/icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#000000">
+
+    <link href="files/css.css" rel="stylesheet">
+    <link href="files/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="files/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="files/style.css">
+    <link rel="stylesheet" type="text/css" href="files/flag-icon.css">
+    <link rel="stylesheet" type="text/css" href="files/animate.css">
+    <link rel="stylesheet" type="text/css" href="files/flipclock.css">
+    <link rel="stylesheet" type="text/css" href="files/swiper.css">
+    <link rel="stylesheet" type="text/css" href="files/demo.css">
+    <link rel="stylesheet" type="text/css" href="files/template-3d-animation.css">
+    <link rel="stylesheet" type="text/css" href="files/style_002.css">
+    <style type="text/css">
+        .drift-conductor-item iframe,
+        .drift-frame-controller {
+            display: block;
+            min-width: 0;
+            max-width: none;
+            min-height: 0;
+            max-height: none;
+        }
+
+        .drift-conductor-item iframe {
+            border: none !important;
+            background: transparent !important;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 100% !important;
+        }
+
+        .drift-conductor-item.with-transition {
+            -webkit-transition: opacity .5s ease, -webkit-transform .5s ease;
+            transition: opacity .5s ease, -webkit-transform .5s ease;
+            -o-transition: opacity .5s ease, -o-transform .5s ease;
+            -moz-transition: opacity .5s ease, transform .5s ease, -moz-transform .5s ease;
+            transition: opacity .5s ease, transform .5s ease;
+            transition: opacity .5s ease, transform .5s ease, -webkit-transform .5s ease, -moz-transform .5s ease, -o-transform .5s ease;
+        }
+
+        .drift-frame-chat.with-transition.drift-frame-chat__takeover {
+            -webkit-transition: opacity .5s ease;
+            -o-transition: opacity .5s ease;
+            -moz-transition: opacity .5s ease;
+            transition: opacity .5s ease;
+        }
+
+        .drift-conductor-item.with-height-transition {
+            -webkit-transition: max-height .5s ease, opacity .5s ease, -webkit-transform .5s ease;
+            transition: max-height .5s ease, opacity .5s ease, -webkit-transform .5s ease;
+            -o-transition: max-height .5s ease, opacity .5s ease, -o-transform .5s ease;
+            -moz-transition: max-height .5s ease, opacity .5s ease, transform .5s ease, -moz-transform .5s ease;
+            transition: max-height .5s ease, opacity .5s ease, transform .5s ease;
+            transition: max-height .5s ease, opacity .5s ease, transform .5s ease, -webkit-transform .5s ease, -moz-transform .5s ease, -o-transform .5s ease;
+        }
+
+        .drift-conductor-item {
+            -webkit-transform: translateZ(0);
+            -moz-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+
+        .drift-frame-controller {
+            bottom: 24px;
+        }
+
+        .drift-frame-controller-align-left {
+            left: 24px;
+        }
+
+        .drift-frame-controller-align-right {
+            right: 24px;
+        }
+
+        .drift-frame-chat:not(iframe) {
+            bottom: -webkit-calc(12px + 52px + 24px);
+            bottom: -moz-calc(12px + 52px + 24px);
+            bottom: calc(12px + 52px + 24px);
+            /* vertical margin x 2 + widget icon size*/
+            width: 100%;
+            height: 100%;
+            min-width: 320px;
+            opacity: 0;
+            visibility: hidden;
+
+            -webkit-transform: translateY(88px);
+
+            -moz-transform: translateY(88px);
+
+            -ms-transform: translateY(88px);
+
+            -o-transform: translateY(88px);
+
+            transform: translateY(88px);
+        }
+
+        .drift-frame-chat:not(iframe).drift-chat-open {
+            opacity: 1;
+            visibility: visible;
+            -webkit-transform: translateY(0px);
+            -moz-transform: translateY(0px);
+            -ms-transform: translateY(0px);
+            -o-transform: translateY(0px);
+            transform: translateY(0px);
+        }
+
+        .drift-frame-chat.drift-frame-chat__takeover:not(iframe):not(.drift-frame--mobile) {
+            min-width: 600px;
+        }
+
+        .drift-frame-chat-align-left {
+            left: 12px;
+        }
+
+        .drift-frame-chat-align-right {
+            right: 12px;
+        }
+
+        .drift-frame-takeover,
+        .drift-frame-landingPage,
+        .drift-frame-chat__takeover {
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+            min-width: 100%;
+        }
+
+        .drift-frame-chat__takeover.hide-frame {
+            visibility: hidden;
+        }
+
+        .drift-frame-emailCapture {
+            bottom: 0;
+            height: -webkit-calc(100% + 30px);
+            height: -moz-calc(100% + 30px);
+            height: calc(100% + 30px);
+        }
+
+        .drift-frame-emailCapture-align-left {
+            left: 0;
+        }
+
+        .drift-frame-emailCapture-align-right {
+            right: 0;
+        }
+
+        .drift-frame-slider {
+            bottom: 18px;
+            height: -webkit-calc(100% + 20px);
+            height: -moz-calc(100% + 20px);
+            height: calc(100% + 20px);
+        }
+
+        .drift-frame-slider-align-left {
+            left: 96px;
+        }
+
+        .drift-frame-slider-align-right {
+            right: 96px;
+        }
+
+        .drift-frame--mobile.drift-frame-slider-align-left {
+            left: 68px;
+        }
+
+        .drift-frame--mobile.drift-frame-slider-align-right {
+            right: 68px;
+        }
+
+        .drift-widget-content-box {
+            background: rgba(0, 0, 0, .5);
+            width: 100%;
+            height: 100%;
+
+            position: fixed;
+            z-index: 2147483647;
+            top: 0;
+            left: 0;
+        }
+
+        .drift-widget-content-box>* {
+            margin: 0 auto;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            max-height: 80%;
+
+        }
+
+        @media (max-height: 685px),
+        (min-width: 369px) and (max-width: 380px),
+        (max-width: 367px),
+
+        (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+            .drift-frame--mobile.drift-frame-chat.drift-chat-open {
+                bottom: 0 !important;
+                right: 0;
+                left: 0;
+                z-index: 2147483647 !important;
+            }
+
+            .drift-frame--mobile.drift-frame-controller {
+                bottom: 0;
+            }
+
+            .drift-frame--mobile.drift-frame-controller.drift-frame-controller-align-left {
+                left: 0;
+            }
+
+            .drift-frame--mobile.drift-frame-controller.drift-frame-controller-align-right {
+                right: 0;
+            }
+
+
+            .drift-frame--mobile.drift-frame-controller.drift-chat-open {
+                display: none;
+            }
+
+            .drift-frame--mobile.drift-frame-slider {
+                bottom: 0;
+                max-width: 320px;
+            }
+
+            .drift-frame--mobile iframe.drift-frame-chat {
+                width: 1px !important;
+                min-width: 100%;
+
+                height: 1px !important;
+                min-height: 100%;
+            }
+
+            html.drift-widget-parent--chat-open,
+            html.drift-widget-parent--chat-open>body {
+                height: 100vh !important;
+                margin: 0 !important;
+                min-height: 0 !important;
+                overflow: hidden !important;
+                position: static !important;
+            }
+        }
+
+        @media only screen and (orientation: landscape) {
+            .drift-frame--mobile.drift-frame-controller.drift-chat-open {
+                display: none;
+            }
+
+            .drift-frame--mobile.drift-frame-controller {
+                bottom: 0;
+            }
+
+            .drift-frame--mobile.drift-frame-controller-align-right {
+                right: 0;
+            }
+
+            .drift-frame--mobile.drift-frame-controller-align-left {
+                left: 0;
+            }
+        }
+
+        .drift-frame-chat.widget--xs.drift-chat-open {
+            bottom: 0 !important;
+            right: 0 !important;
+            left: 0 !important;
+        }
+
+        .drift-frame-controller.widget--xs.drift-chat-open {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="1-column undefined page-animated svg-wrapper loaded" data-menu-open="hover" data-menu="">
+    <!-- Preloader | Comment below code if you don't want preloader-->
+    <div id="loader-wrapper">
+        <svg viewBox=" 0 0 512 512" id="loader">
+            <linearGradient id="loaderLinearColors" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="5%" stop-color="#28bcfd"></stop>
+                <stop offset="100%" stop-color="#1d78ff"></stop>
+            </linearGradient>
+            <g>
+                <circle cx="256" cy="256" r="150" fill="none" stroke="url(#loaderLinearColors)"></circle>
+            </g>
+            <g>
+                <circle cx="256" cy="256" r="125" fill="none" stroke="url(#loaderLinearColors)"></circle>
+            </g>
+            <g>
+                <circle cx="256" cy="256" r="100" fill="none" stroke="url(#loaderLinearColors)"></circle>
+            </g>
+            <g>
+                <circle cx="256" cy="256" r="75" fill="none" stroke="url(#loaderLinearColors)"></circle>
+            </g>
+            <circle cx="256" cy="256" r="60" fill="url(#loaderImage)" stroke="none" stroke-width="0"></circle>
+            <defs>
+                <pattern id="loaderImage" height="100%" width="100%" patternContentUnits="objectBoundingBox">
+                    <image href="images/loader-logo.png" preserveAspectRatio="none" width="1" height="1"></image>
+                </pattern>
+            </defs>
+        </svg>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <nav class="vertical-social"
+        style="position: fixed; top: 0px; left: 0px; right: 0px; overflow: hidden; height: 170px;">
+        <div class="midnightHeader default"
+            style="position: absolute; overflow: hidden; inset: 0px; transform: translateY(0%) translateZ(0px);">
+            <div class="midnightInner"
+                style="position: absolute; overflow: auto; inset: 0px; transform: translateY(0%) translateZ(0px);">
+                <ul>
+                    <li><a href="https://t.me/cosmicsafuu" target="_blank"><i class="fa fa-telegram"
+                                aria-hidden="true"></i></a></li>
+                    <li><a href="https://twitter.com/cosmicsafuu" target="_blank"> <i class="fa fa-twitter"
+                                aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="midnightHeader white"
+            style="position: absolute; overflow: hidden; inset: 0px; transform: translateY(110%) translateZ(0px);">
+            <div class="midnightInner"
+                style="position: absolute; overflow: auto; inset: 0px; transform: translateY(-110%) translateZ(0px);">
+                <ul>
+                    <li><a href="https://t.me/cosmicsafuu" target="_blank"><i class="fa fa-telegram"
+                                aria-hidden="true"></i></a></li>
+                    <li><a href="https://twitter.com/cosmicsafuu" target="_blank"> <i class="fa fa-twitter"
+                                aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="page-header">
+        <nav class="main-menu static-top navbar-dark navbar navbar-expand-lg fixed-top mb-1">
+            <div class="container">
+                <a class="navbar-brand animated fadeInDown" data-animation="fadeInDown" data-animation-delay="1s"
+                    href="#head-area" style="animation-delay: 1s; opacity: 1;"><img src="files/logo.png"
+                        alt="Crypto Logo"><span class="brand-text"><span class="font-weight-bold">Cosmic</span>
+                        Safuu</span></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div id="navigation" class="navbar-nav ml-auto">
+                        <ul class="navbar-nav mt-1">
+                            <li class="nav-item animated fadeInDown" data-animation="fadeInDown"
+                                data-animation-delay="1.1s" style="animation-delay: 1.1s; opacity: 1;">
+                                <a class="nav-link active" href="#head-area">Home</a>
+                            </li>
+                            <li class="nav-item animated fadeInDown" data-animation="fadeInDown"
+                                data-animation-delay="1.2s" style="animation-delay: 1.2s; opacity: 1;">
+                                <a class="nav-link" href="#about">How it works!</a>
+                            </li>
+                            <li class="nav-item animated fadeInDown" data-animation="fadeInDown"
+                                data-animation-delay="1.4s" style="animation-delay: 1.4s; opacity: 1;">
+                                <a target="_blank" class="nav-link" href="#tokenmics">Tokenomics</a>
+                            </li>
+                            <li class="nav-item animated fadeInDown" data-animation="fadeInDown"
+                                data-animation-delay="1.5s" style="animation-delay: 1.5s; opacity: 1;">
+                                <a class="nav-link" href="https://cosmicsafuu.gitbook.io/docs">Whitepaper</a>
+                            </li>
+                            <li class="nav-item animated fadeInDown" data-animation="fadeInDown"
+                                data-animation-delay="1.3s" style="animation-delay: 1.3s; opacity: 1;">
+                                <a class="nav-link" href="https://pinksale.finance">Fair-lunch</a>
+                            </li>
+                        </ul>
+                        <span id="slide-line" style="width: 57.7094px; left: 951.919px;"></span>
+                        <form class="form-inline mt-2 mt-md-0">
+                            <a class="btn btn-sm btn-gradient-purple btn-glow my-2 my-sm-0 animated fadeInDown"
+                                data-animation="fadeInDown" data-animation-delay="1.8s" href="#" target="_blank"
+                                style="animation-delay: 1.8s; opacity: 1;">Dashboard</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="content-wrapper">
+        <div class="content-body">
+            <main>
+                <section class="head-area" id="head-area">
+                    <div id="particles-js"><canvas class="particles-js-canvas-el" width="1905" height="888"
+                            style="width: 100%; height: 100%;"></canvas></div>
+                    <div class="head-content d-flex align-items-center">
+                        <div class="container">
+                            <div class="banner-wrapper">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="banner-content pt-5" style="margin-top: 200px;">
+                                            <h1 class="best-template animated fadeInUpShorter"
+                                                data-animation="fadeInUpShorter" data-animation-delay="1.5s"
+                                                style="animation-delay: 1.5s; opacity: 1;">BIGGEST Multichain
+                                                Auto-Staking &amp; Auto-Compounding Defi 3.0 Protocol & BUSD Reflection
+                                            </h1>
+                                            <p class="d-block white animated fadeInUpShorter"
+                                                data-animation="fadeInUpShorter" data-animation-delay="1.6s"
+                                                style="animation-delay: 1.6s; opacity: 1;">BIGGEST Fixed APY –
+                                                385,612.8%
+                                                <br class="d-none d-xl-block">
+                                                Automatic Staking and Compounding in Your Wallet !<br
+                                                    class="d-none d-xl-block">
+                                                Interest Paid Every 15 Minutes: 96 Times Daily !<br
+                                                    class="d-none d-xl-block">
+                                                Massive Burning of supply every week<br class="d-none d-xl-block">
+                                                BUSD Reflection to all holders<br class="d-none d-xl-block">
+                                                Full KYC & Audit verified &check;&check;&check;
+                                            </p>
+                                            <div class="mt-5">
+                                                <a href="https://pancakeswap.finance/swap?outputCurrency="
+                                                    target="_blank"
+                                                    class="btn btn-lg btn-gradient-purple btn-glow mr-4 mb-2 animated fadeInUpShorter"
+                                                    data-animation="fadeInUpShorter" data-animation-delay="1.7s"
+                                                    style="animation-delay: 1.8s; opacity: 1;">Buy $CSF</a>
+                                                <a href="https://poocoin.app/tokens/" target="_blank"
+                                                    class="btn btn-lg btn-gradient-purple btn-glow mr-4 mb-2 animated fadeInUpShorter"
+                                                    data-animation="fadeInUpShorter" data-animation-delay="1.7s"
+                                                    style="animation-delay: 1.8s; opacity: 1;">Chart</a>
+                                                <a href="files/audit.pdf" target="_blank"
+                                                    class="btn btn-lg btn-gradient-purple btn-glow mb-2 animated fadeInUpShorter"
+                                                    data-animation="fadeInUpShorter" data-animation-delay="1.8s"
+                                                    style="animation-delay: 1.8s; opacity: 1;">Audit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <img src="images/icon-2.png">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="about section-padding" id="about">
+                    <div class="container">
+                        <div class="heading text-center">
+                            <div class="animated" data-animation="fadeInUpShorter" data-animation-delay="0.3s"
+                                style="animation-delay: 0.3s; opacity: 0;">
+                                <h1 class="title">How it works!</h1>
+                            </div>
+                            <h4 class="animated" data-animation="fadeInUpShorter" data-animation-delay="0.7s"
+                                style="animation-delay: 0.7s; opacity: 0;">Contract: <a
+                                    href="https://bscscan.com/address/0x7c15c1a339e1766fe2615d85093f7526a094b57d"
+                                    target="_blank">0x7C15c1A339e1766Fe2615d85093f7526A094b57d</a></h4>
+                        </div>
+                        <div class="content-area">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6">
+                                    <h4 class="title animated" data-animation="fadeInUpShorter"
+                                        data-animation-delay="0.5s" style="animation-delay: 0.5s; opacity: 0;">
+                                        <img class="img-fluid" src="images/loader-logo-64.png" alt="Rewards">
+
+                                        CSF Token
+                                    </h4>
+                                    <h6 class="pt-4 pb-2 animated" data-animation="fadeInUpShorter"
+                                        data-animation-delay="0.6s" style="animation-delay: 0.6s; opacity: 0;">$CSF is
+                                        the utility token of the ecosystem. Holders
+                                        receives 0.02362% interest every 15 minutes automatically just for holding $CSF!
+                                    </h6>
+
+                                    <h6 class="pt-4 pb-2 animated" data-animation="fadeInUpShorter"
+                                        data-animation-delay="0.6s" style="animation-delay: 0.6s; opacity: 0;">$BUSD
+                                        reward to all holder!</h6>
+                                </div>
+                                <div class="col-md-12 col-lg-6 animated" data-animation="fadeInUpShorter"
+                                    data-animation-delay="0.7s" style="animation-delay: 0.7s; opacity: 0;">
+                                    <div class="position-relative what-is-crypto-img float-xl-right">
+                                        <img class="img-fluid" src="images/rocket.png" alt="Rewards">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6">
+                                    <p class="title animated" data-animation="fadeInUpShorter"
+                                        data-animation-delay="0.5s" style="animation-delay: 0.5s; opacity: 0;">
+                                        <img class="img-fluid" src="images/icons8-process-64.png" alt="Rewards">
+
+                                        Auto Compounding
+                                    </p>
+                                    <p class="pt-4 pb-2 animated" data-animation="fadeInUpShorter"
+                                        data-animation-delay="0.6s" style="animation-delay: 0.6s; opacity: 0;">Crypto’s
+                                        Highest Auto-Staking and Auto-Compounding Protocol with the biggest fixed APY
+                                        385,612.8% in the World. Interest rewards are compounded every 15 minutes for
+                                        every wallet holding $CSF token. It is backed by the Treasury.
+                                    </p>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6">
+                                    <h4 class="title animated" data-animation="fadeInUpShorter"
+                                        data-animation-delay="0.5s" style="animation-delay: 0.5s; opacity: 0;">
+                                        <img class="img-fluid" src="images/icons8-piggy-64.png" alt="Rewards">
+
+                                        Cosmic INSURANCE FUND (CIF)
+                                    </h4>
+                                    <p class="pt-4 pb-2 animated" data-animation="fadeInUpShorter"
+                                        data-animation-delay="0.6s" style="animation-delay: 0.6s; opacity: 0;">CIF helps
+                                        in sustaining the Cosmic Protocol and back the consistent 0.02422% Positive
+                                        rebase rate paid to all $CSF token holders.
+                                    </p>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6">
+                                    <h4 class="title animated" data-animation="fadeInUpShorter"
+                                        data-animation-delay="0.5s" style="animation-delay: 0.5s; opacity: 0;">
+                                        <img class="img-fluid" src="images/icons8-bank-64.png" alt="Rewards">
+
+                                        Cosmic Treasury
+                                    </h4>
+                                    <p class="pt-4 pb-2 animated" data-animation="fadeInUpShorter"
+                                        data-animation-delay="0.6s" style="animation-delay: 0.6s; opacity: 0;">The
+                                        Cosmic Treasury provides support to the Cosmic Insurance Fund (CIF), in the
+                                        event of an extreme price drop in the $CSF token. Cosmic Treasury is also used
+                                        for massive marketing campaigns, new Cosmic developments and investments.
+                                    </p>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6">
+                                    <h4 class="title animated" data-animation="fadeInUpShorter"
+                                        data-animation-delay="0.5s" style="animation-delay: 0.5s; opacity: 0;">
+                                        <img class="img-fluid" src="images/icons8-fire-64.png" alt="Rewards">
+
+                                        Auto Fire Pit
+                                    </h4>
+                                    <p class="pt-4 pb-2 animated" data-animation="fadeInUpShorter"
+                                        data-animation-delay="0.6s" style="animation-delay: 0.6s; opacity: 0;">With our
+                                        Hyper burn program, 2% of all $CSF traded are burnt in the Stone Fire. The more
+                                        that is traded, the more get put into the fire causing the Stone fire to grow in
+                                        size reducing the circulating supply and keeping the Cosmic protocol stable.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="roadmap" class="roadmap section-padding">
+                    <div class="container">
+                        <div class="heading text-center">
+                            <div class="animated" data-animation="fadeInUpShorter" data-animation-delay="0.3s"
+                                style="animation-delay: 0.3s; opacity: 0;">
+                                <h1 class="title">How much can I earn?</h2>
+                            </div>
+                        </div>
+                        <div class="row animated" data-animation="fadeInUpShorter" data-animation-delay="0.6s"
+                            style="animation-delay: 0.6s; opacity: 0;">
+                            <div class="col-12">
+                                <div class="roadmap-container">
+                                    <div class="swiper-container swiper-container-horizontal" style="cursor: grab;">
+                                        <div class="swiper-wrapper timeline">
+                                            <div class="swiper-slide swiper-slide-active" style="width: 199.8px;">
+                                                <div class="roadmap-info">
+                                                    <div class="timestamp completed">
+                                                        <span class="date">Presale start!</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide swiper-slide-next" style="width: 199.8px;">
+                                                <div class="roadmap-info">
+                                                    <div class="timestamp completed">
+                                                        <span class="date">At the end of the year and with $1000 usd of
+                                                            $CSF invested.</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide swiper-slide-next" style="width: 199.8px;">
+                                                <div class="roadmap-info">
+                                                    <div class="timestamp active">
+                                                        <span class="date">HODLLL !</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide" style="width: 199.8px;">
+                                                <div class="roadmap-info">
+                                                    <div class="timestamp remaining">
+                                                        <span class="date">Holders are rewarded with automatic compound
+                                                            interest which is paid every 15 minutes.</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide" style="width: 199.8px;">
+                                                <div class="roadmap-info">
+                                                    <div class="timestamp remaining">
+                                                        <span class="date">YOU CAN EARN UP TO
+                                                            $3,840,628.24 USD OF
+                                                            $CSF AT 385,047.90%
+                                                            APY*.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide" style="width: 199.8px;">
+                                                <div class="roadmap-info">
+                                                    <div class="timestamp remaining">
+                                                        <span class="date">Jun 2022</span>
+                                                    </div>
+                                                    <div class="status remaining">
+                                                        <span>Mobile apps for <br>iOS &amp; Android</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="swiper-notification" aria-live="assertive"
+                                            aria-atomic="true"></span>
+                                    </div>
+                                    <div class="swiper-control">
+                                        <span class="prev-slide swiper-button-disabled" tabindex="0" role="button"
+                                            aria-label="Previous slide" aria-disabled="true"></span>
+                                        <span class="next-slide" tabindex="0" role="button" aria-label="Next slide"
+                                            aria-disabled="false"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6 animated" data-animation="fadeInUpShorter"
+                            data-animation-delay="0.7s" style="animation-delay: 0.7s; opacity: 0;">
+                            <div class="position-relative what-is-crypto-img float-xl-right">
+                                <img class="img-fluid" src="images/astronaut.png" alt="Rewards">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="about section-padding" id="tokenmics">
+                    <div class="container">
+                        <div class="heading text-center">
+                            <div class="animated" data-animation="fadeInUpShorter" data-animation-delay="0.3s"
+                                style="animation-delay: 0.3s; opacity: 0;">
+                                <h1 class="title">Tokenomics</h1>
+                            </div>
+                        </div>
+
+                        <div class="elementor-container elementor-column-gap-default">
+
+                            <div class="elementor-row">
+
+                                <div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-73476cf elementor-hidden-mobile"
+                                    data-id="73476cf" data-element_type="column">
+                                    <div class="elementor-column-wrap elementor-element-populated">
+                                        <div class="elementor-icon-box-content">
+                                            <h3 class="elementor-icon-box-title">
+                                                <span>Buy</span>
+                                                <img class="img-fluid" src="images/profits (1).png" alt="Rewards">
+
+                                            </h3>
+                                            <p style="text-align: center;">14% Slippage </p>
+
+                                        </div>
+                                        <div class="elementor-widget-wrap">
+                                            <div class="elementor-element elementor-element-ca79c78 elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box"
+                                                data-id="ca79c78" data-element_type="widget"
+                                                data-widget_type="icon-box.default">
+                                                <div class="elementor-widget-container">
+                                                    <div class="elementor-icon-box-wrapper">
+                                                        <div class="elementor-icon-box-content">
+
+                                                            <p class="elementor-icon-box-description">
+                                                                <b>4%</b>
+                                                                of order fees automatic return to LIQUIDITY
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="elementor-element elementor-element-a785163 elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box"
+                                                data-id="a785163" data-element_type="widget"
+                                                data-widget_type="icon-box.default">
+                                                <div class="elementor-widget-container">
+                                                    <div class="elementor-icon-box-wrapper">
+                                                        <div class="elementor-icon-box-content">
+
+                                                            <p class="elementor-icon-box-description">
+                                                                <B>5%</B>
+                                                                of order fees are stored in CIF
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="elementor-element elementor-element-81e0d36 elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box"
+                                                data-id="81e0d36" data-element_type="widget"
+                                                data-widget_type="icon-box.default">
+                                                <div class="elementor-widget-container">
+                                                    <div class="elementor-icon-box-wrapper">
+                                                        <div class="elementor-icon-box-content">
+                                                            <p class="elementor-icon-box-description">
+                                                                <B>2.5%</B>
+                                                                of order fees go to the TREASURY
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="elementor-element elementor-element-25db256 elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box"
+                                                data-id="25db256" data-element_type="widget"
+                                                data-widget_type="icon-box.default">
+                                                <div class="elementor-widget-container">
+                                                    <div class="elementor-icon-box-wrapper">
+                                                        <div class="elementor-icon-box-content">
+
+                                                            <p class="elementor-icon-box-description">
+                                                                <b>2.5%</b>
+                                                                of CSF is burnt in the FIRE PIT
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-39233e0 elementor-hidden-mobile"
+                                    data-id="39233e0" data-element_type="column">
+                                    <div class="elementor-column-wrap elementor-element-populated">
+                                        <div class="elementor-widget-wrap">
+                                            <div class="elementor-element elementor-element-1c6e925 elementor-widget-divider--view-line elementor-widget elementor-widget-divider"
+                                                data-id="1c6e925" data-element_type="widget"
+                                                data-widget_type="divider.default">
+
+                                            </div>
+                                            <div class="elementor-element elementor-element-768d2b8 elementor-view-default elementor-widget elementor-widget-icon"
+                                                data-id="768d2b8" data-element_type="widget"
+                                                data-widget_type="icon.default">
+
+                                            </div>
+                                            <div class="elementor-element elementor-element-5398bf7 elementor-widget-divider--view-line elementor-widget elementor-widget-divider"
+                                                data-id="5398bf7" data-element_type="widget"
+                                                data-widget_type="divider.default">
+
+                                            </div>
+                                            <div class="elementor-element elementor-element-7e656a3 elementor-view-default elementor-widget elementor-widget-icon"
+                                                data-id="7e656a3" data-element_type="widget"
+                                                data-widget_type="icon.default">
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-a661efa elementor-hidden-mobile"
+                                    data-id="a661efa" data-element_type="column">
+                                    <div class="elementor-column-wrap elementor-element-populated">
+                                        <div class="elementor-icon-box-content">
+                                            <h3 class="elementor-icon-box-title">
+                                                <span>Sell</span>
+                                                <img class="img-fluid" src="images/loss (1).png" alt="Rewards">
+
+                                            </h3>
+                                            <p style="text-align: center;">16% Slippage </p>
+
+                                        </div>
+                                        <div class="elementor-widget-wrap">
+                                            <div class="elementor-element elementor-element-0806a8a elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box"
+                                                data-id="0806a8a" data-element_type="widget"
+                                                data-widget_type="icon-box.default">
+                                                <div class="elementor-widget-container">
+                                                    <div class="elementor-icon-box-wrapper">
+                                                        <div class="elementor-icon-box-content">
+
+                                                            <p class="elementor-icon-box-description">
+                                                                <b>4%</b>
+                                                                of order fees return to LIQUIDITY
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="elementor-element elementor-element-6a80458 elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box"
+                                                data-id="6a80458" data-element_type="widget"
+                                                data-widget_type="icon-box.default">
+                                                <div class="elementor-widget-container">
+                                                    <div class="elementor-icon-box-wrapper">
+                                                        <div class="elementor-icon-box-content">
+
+                                                            <p class="elementor-icon-box-description">
+                                                                <B>5%</B>
+                                                                of order fees are stored in CIF
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="elementor-element elementor-element-7050a97 elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box"
+                                                data-id="7050a97" data-element_type="widget"
+                                                data-widget_type="icon-box.default">
+                                                <div class="elementor-widget-container">
+                                                    <div class="elementor-icon-box-wrapper">
+                                                        <div class="elementor-icon-box-content">
+
+                                                            <p class="elementor-icon-box-description">
+                                                                <B>4.5%</B>
+                                                                of order fees go to the TREASURY
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="elementor-element elementor-element-75a9e82 elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box"
+                                                data-id="75a9e82" data-element_type="widget"
+                                                data-widget_type="icon-box.default">
+                                                <div class="elementor-widget-container">
+                                                    <div class="elementor-icon-box-wrapper">
+                                                        <div class="elementor-icon-box-content">
+
+                                                            <p class="elementor-icon-box-description">
+                                                                <b>2.5%</b>
+                                                                of CSF is burnt in the FIRE PIT
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                </section>
+
+                <section
+                    class="elementor-section elementor-inner-section elementor-element elementor-element-0ac0607 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                    data-id="0ac0607" data-element_type="section"
+                    data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
+                    <div class="elementor-container elementor-column-gap-default">
+                        <div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-89ea6d4"
+                            data-id="89ea6d4" data-element_type="column">
+                            <div class="elementor-widget-wrap elementor-element-populated">
+                                <div class="elementor-element elementor-element-1ec102b elementor-widget elementor-widget-pix-text"
+                                    data-id="1ec102b" data-element_type="widget" data-widget_type="pix-text.default">
+                                    <div class="elementor-widget-container">
+                                        <div class="pix-el-text w-100 text-center ">
+                                            <p class=" m-0 text-body-default text-center font-weight-bold"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-53bbc78 elementor-widget elementor-widget-pix-sliding-text"
+                                    data-id="53bbc78" data-element_type="widget"
+                                    data-widget_type="pix-sliding-text.default">
+                                    <div class="elementor-widget-container">
+                                        <div id="sliding-text-133126778" class="mb-3 text-center ">
+                                            <h1 class="mb-32 pix-sliding-headline font-weight-bold body-font display-4 pix-ready"
+                                                data-class="body-font text-gradient-primary" data-style=""><span
+                                                    class="slide-in-container"><span
+                                                        class="d-inline-block body-font text-gradient-primary animated">Competitive</span></span>
+                                                <span class="slide-in-container"><span
+                                                        class="d-inline-block body-font text-gradient-primary animated">Advantages</span></span>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-d4d79b3 elementor-widget elementor-widget-pix-comparison-table"
+                                    data-id="d4d79b3" data-element_type="widget"
+                                    data-widget_type="pix-comparison-table.default">
+                                    <div class="elementor-widget-container">
+                                        <div class="w-100 ">
+                                            <div class="container" id="pix-event-5473589">
+                                                <div class="sticky-top pix-sticky-top-adjust" style="top: 71px;">
+                                                    <div
+                                                        class="row pix-py-20 pix-comparison-head bg-gradient-primary rounded-xl shadow-sm">
+                                                        <div
+                                                            class="col-12 col-md-4 col-lg-6 d-flex align-items-center font-weight-bold text-heading-default">
+                                                            <div class="pix-px-15">
+                                                                <div class="pix-heading-el text-left ">
+                                                                    <div>
+                                                                        <div class="slide-in-container">
+                                                                            <h6 class="text-gradient-primary font-weight-bold heading-text el-title_custom_color mb-12"
+                                                                                style="" data-anim-type=""
+                                                                                data-anim-delay="0">FEATURES</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="col justify-content-center d-none d-md-flex align-items-center">
+                                                            <div
+                                                                class="mb-0  font-weight-bold  secondary-font h6 text-secondary">
+                                                                Cosmic Safuu</div>
+                                                        </div>
+                                                        <div
+                                                            class="col justify-content-center d-none d-md-flex align-items-center">
+                                                            <div
+                                                                class="mb-0  font-weight-bold  secondary-font h6 text-white">
+                                                                SAFUU</div>
+                                                        </div>
+                                                        <div
+                                                            class="col justify-content-center d-none d-md-flex align-items-center">
+                                                            <div
+                                                                class="mb-0  font-weight-bold  secondary-font h6 text-white">
+                                                                Titano</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pix-py-20 pix-my-10 pix-bottom-line rounded-lg">
+                                                    <div class="col-12 col-md-4 col-lg-6 mb-2 mb-sm-0 pb-2 pb-md-0">
+                                                        <div class="pix-px-15">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="pix-heading-el text-left ">
+                                                                    <div>
+                                                                        <div class="slide-in-container">
+                                                                            <h6 class="text-primary font-weight-bold heading-text el-title_custom_color mb-12"
+                                                                                style="" data-anim-type=""
+                                                                                data-anim-delay="0">APY</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div><span class="h6 mb-0"><i data-toggle="tooltip"
+                                                                        data-placement="right" title=""
+                                                                        class="text-primary ml-2 mb-0 line-height-0 pixicon-question-circle"
+                                                                        style="cursor: help;font-size:70%;"
+                                                                        data-original-title="Annual Percentage Yield"></i></span>
+                                                            </div>
+                                                            <div class="pix-el-text w-100  ">
+                                                                <p class=" m-0 text-body-default  ">Annual Percentage
+                                                                    Yield %</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_1_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-secondary">
+                                                            &check;
+                                                            <i
+                                                                class="pixicon-check-circle-1 mr-2 text-secondary"></i> 385,945.80%
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_2_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i
+                                                                class="pixicon-check-circle-1 mr-2 text-white"></i>383,025.80%
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_3_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i
+                                                                class="pixicon-check-circle-1 mr-2 text-white"></i>102,483.58%
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pix-py-20 pix-my-10 pix-bottom-line rounded-lg">
+                                                    <div class="col-12 col-md-4 col-lg-6 mb-2 mb-sm-0 pb-2 pb-md-0">
+                                                        <div class="pix-px-15">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="pix-heading-el text-left ">
+                                                                    <div>
+                                                                        <div class="slide-in-container">
+                                                                            <h6 class="text-primary font-weight-bold heading-text el-title_custom_color mb-12"
+                                                                                style="" data-anim-type=""
+                                                                                data-anim-delay="0">Fees</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_1_title d-md-flex align-items-center justify-content-center">
+                                                        &#9757;
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-secondary">
+                                                            14% / 16%</div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_2_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            14% / 16%</div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_3_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            13% / 18%</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pix-py-20 pix-my-10 pix-bottom-line rounded-lg">
+                                                    <div class="col-12 col-md-4 col-lg-6 mb-2 mb-sm-0 pb-2 pb-md-0">
+                                                        <div class="pix-px-15">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="pix-heading-el text-left ">
+                                                                    <div>
+                                                                        <div class="slide-in-container">
+                                                                            <h6 class="text-primary font-weight-bold heading-text el-title_custom_color mb-12"
+                                                                                style="" data-anim-type=""
+                                                                                data-anim-delay="0">Automatic Burn</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_1_title d-md-flex align-items-center justify-content-center">
+                                                        &#128293;
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-secondary">
+                                                            <i class="pixicon-fire2 mr-2 text-secondary"></i>Yes</div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_2_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i class="pixicon-fire2 mr-2 text-white"></i>No</div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_3_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i class="pixicon-fire2 mr-2 text-white"></i>No</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pix-py-20 pix-my-10 pix-bottom-line rounded-lg">
+                                                    <div class="col-12 col-md-4 col-lg-6 mb-2 mb-sm-0 pb-2 pb-md-0">
+                                                        <div class="pix-px-15">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="pix-heading-el text-left ">
+                                                                    <div>
+                                                                        <div class="slide-in-container">
+                                                                            <h6 class="text-primary font-weight-bold heading-text el-title_custom_color mb-12"
+                                                                                style="" data-anim-type=""
+                                                                                data-anim-delay="0">Dual Reward</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div><span class="h6 mb-0"><i data-toggle="tooltip"
+                                                                        data-placement="right" title=""
+                                                                        class="text-primary ml-2 mb-0 line-height-0 pixicon-question-circle"
+                                                                        style="cursor: help;font-size:70%;"
+                                                                        data-original-title="This is an awesome tooltip to highlight an important information to visitors"></i></span>
+                                                            </div>
+                                                            <div class="pix-el-text w-100  ">
+                                                                <p class=" m-0 text-body-default  ">BUSD Reflections</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_1_title d-md-flex align-items-center justify-content-center">
+                                                        $
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-secondary">
+                                                            <i class="pixicon-rocket-1 mr-2 text-secondary"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_2_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            No</div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_3_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            No</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pix-py-20 pix-my-10 pix-bottom-line rounded-lg">
+                                                    <div class="col-12 col-md-4 col-lg-6 mb-2 mb-sm-0 pb-2 pb-md-0">
+                                                        <div class="pix-px-15">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="pix-heading-el text-left ">
+                                                                    <div>
+                                                                        <div class="slide-in-container">
+                                                                            <h6 class="text-primary font-weight-bold heading-text el-title_custom_color mb-12"
+                                                                                style="" data-anim-type=""
+                                                                                data-anim-delay="0">Sustainable Rebasing
+                                                                            </h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_1_title d-md-flex align-items-center justify-content-center">
+                                                        &#128184;
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-secondary">
+                                                            <i
+                                                                class="pixicon-check-circle-2 mr-2 text-secondary"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_2_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i class="pixicon-check-circle-2 mr-2 text-white"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_3_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            No</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pix-py-20 pix-my-10 pix-bottom-line rounded-lg">
+                                                    <div class="col-12 col-md-4 col-lg-6 mb-2 mb-sm-0 pb-2 pb-md-0">
+                                                        <div class="pix-px-15">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="pix-heading-el text-left ">
+                                                                    <div>
+                                                                        <div class="slide-in-container">
+                                                                            <h6 class="text-primary font-weight-bold heading-text el-title_custom_color mb-12"
+                                                                                style="" data-anim-type=""
+                                                                                data-anim-delay="0">Insurance Fund</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_1_title d-md-flex align-items-center justify-content-center">
+                                                        &check;
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-secondary">
+                                                            <i
+                                                                class="pixicon-check-circle-2 mr-2 text-secondary"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_2_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i class="pixicon-check-circle-2 mr-2 text-white"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_3_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            No</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pix-py-20 pix-my-10 pix-bottom-line rounded-lg">
+                                                    <div class="col-12 col-md-4 col-lg-6 mb-2 mb-sm-0 pb-2 pb-md-0">
+                                                        <div class="pix-px-15">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="pix-heading-el text-left ">
+                                                                    <div>
+                                                                        <div class="slide-in-container">
+                                                                            <h6 class="text-primary font-weight-bold heading-text el-title_custom_color mb-12"
+                                                                                style="" data-anim-type=""
+                                                                                data-anim-delay="0">Auto-Liquidity</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_1_title d-md-flex align-items-center justify-content-center">
+                                                        &check;
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-secondary">
+                                                            <i
+                                                                class="pixicon-check-circle-2 mr-2 text-secondary"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_2_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i class="pixicon-check-circle-2 mr-2 text-white"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_3_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            No</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pix-py-20 pix-my-10 pix-bottom-line rounded-lg">
+                                                    <div class="col-12 col-md-4 col-lg-6 mb-2 mb-sm-0 pb-2 pb-md-0">
+                                                        <div class="pix-px-15">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="pix-heading-el text-left ">
+                                                                    <div>
+                                                                        <div class="slide-in-container">
+                                                                            <h6 class="text-primary font-weight-bold heading-text el-title_custom_color mb-12"
+                                                                                style="" data-anim-type=""
+                                                                                data-anim-delay="0">Auto-Staking</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_1_title d-md-flex align-items-center justify-content-center">
+                                                        &check;
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-secondary">
+                                                            <i
+                                                                class="pixicon-check-circle-2 mr-2 text-secondary"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_2_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i class="pixicon-check-circle-2 mr-2 text-white"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_3_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i class="pixicon-check-circle-2 mr-2 text-white"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pix-py-20 pix-my-10 pix-bottom-line rounded-lg">
+                                                    <div class="col-12 col-md-4 col-lg-6 mb-2 mb-sm-0 pb-2 pb-md-0">
+                                                        <div class="pix-px-15">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="pix-heading-el text-left ">
+                                                                    <div>
+                                                                        <div class="slide-in-container">
+                                                                            <h6 class="text-primary font-weight-bold heading-text el-title_custom_color mb-12"
+                                                                                style="" data-anim-type=""
+                                                                                data-anim-delay="0">Fees Hard Coded</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_1_title d-md-flex align-items-center justify-content-center">
+                                                        &check;
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-secondary">
+                                                            <i
+                                                                class="pixicon-check-circle-2 mr-2 text-secondary"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_2_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i class="pixicon-check-circle-2 mr-2 text-white"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_3_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            No</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pix-py-20 pix-my-10 pix-bottom-line rounded-lg">
+                                                    <div class="col-12 col-md-4 col-lg-6 mb-2 mb-sm-0 pb-2 pb-md-0">
+                                                        <div class="pix-px-15">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="pix-heading-el text-left ">
+                                                                    <div>
+                                                                        <div class="slide-in-container">
+                                                                            <h6 class="text-primary font-weight-bold heading-text el-title_custom_color mb-12"
+                                                                                style="" data-anim-type=""
+                                                                                data-anim-delay="0">Auto-Staking Hard
+                                                                                Coded</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_1_title d-md-flex align-items-center justify-content-center">
+                                                        &check;
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-secondary">
+                                                            <i
+                                                                class="pixicon-check-circle-2 mr-2 text-secondary"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_2_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i class="pixicon-check-circle-2 mr-2 text-white"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_3_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            No</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pix-py-20 pix-my-10 pix-bottom-line rounded-lg">
+                                                    <div class="col-12 col-md-4 col-lg-6 mb-2 mb-sm-0 pb-2 pb-md-0">
+                                                        <div class="pix-px-15">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="pix-heading-el text-left ">
+                                                                    <div>
+                                                                        <div class="slide-in-container">
+                                                                            <h6 class="text-primary font-weight-bold heading-text el-title_custom_color mb-12"
+                                                                                style="" data-anim-type=""
+                                                                                data-anim-delay="0">Rug-Proof: No
+                                                                                Minting Code</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_1_title d-md-flex align-items-center justify-content-center">
+                                                        &check;;
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-secondary">
+                                                            <i
+                                                                class="pixicon-check-circle-2 mr-2 text-secondary"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_2_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i class="pixicon-check-circle-2 mr-2 text-white"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_3_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            No</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pix-py-20 pix-my-10 pix-bottom-line rounded-lg">
+                                                    <div class="col-12 col-md-4 col-lg-6 mb-2 mb-sm-0 pb-2 pb-md-0">
+                                                        <div class="pix-px-15">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="pix-heading-el text-left ">
+                                                                    <div>
+                                                                        <div class="slide-in-container">
+                                                                            <h6 class="text-primary font-weight-bold heading-text el-title_custom_color mb-12"
+                                                                                style="" data-anim-type=""
+                                                                                data-anim-delay="0">Rug-Proof: No Manual
+                                                                                Adjusting</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_1_title d-md-flex align-items-center justify-content-center">
+                                                        &check;
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-secondary">
+                                                            <i
+                                                                class="pixicon-check-circle-2 mr-2 text-secondary"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_2_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i class="pixicon-check-circle-2 mr-2 text-white"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_3_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            No</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pix-py-20 pix-my-10 pix-bottom-line rounded-lg">
+                                                    <div class="col-12 col-md-4 col-lg-6 mb-2 mb-sm-0 pb-2 pb-md-0">
+                                                        <div class="pix-px-15">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="pix-heading-el text-left ">
+                                                                    <div>
+                                                                        <div class="slide-in-container">
+                                                                            <h6 class="text-primary font-weight-bold heading-text el-title_custom_color mb-12"
+                                                                                style="" data-anim-type=""
+                                                                                data-anim-delay="0">Rug-Proof: Fixed
+                                                                                Rebase Time</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_1_title d-md-flex align-items-center justify-content-center">
+                                                        &check;
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-secondary">
+                                                            <i
+                                                                class="pixicon-check-circle-2 mr-2 text-secondary"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_2_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i class="pixicon-check-circle-2 mr-2 text-white"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_3_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i class="pixicon-check-circle-2 mr-2 text-white"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pix-py-20 pix-my-10 pix-bottom-line rounded-lg">
+                                                    <div class="col-12 col-md-4 col-lg-6 mb-2 mb-sm-0 pb-2 pb-md-0">
+                                                        <div class="pix-px-15">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="pix-heading-el text-left ">
+                                                                    <div>
+                                                                        <div class="slide-in-container">
+                                                                            <h6 class="text-primary font-weight-bold heading-text el-title_custom_color mb-12"
+                                                                                style="" data-anim-type=""
+                                                                                data-anim-delay="0">Rug-Proof: Liquidity
+                                                                                Locked</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_1_title d-md-flex align-items-center justify-content-center">
+                                                        &check;
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-secondary">
+                                                            <i
+                                                                class="pixicon-check-circle-2 mr-2 text-secondary"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_2_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i class="pixicon-check-circle-2 mr-2 text-white"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_3_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i class="pixicon-check-circle-2 mr-2 text-white"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pix-py-20 pix-my-10 pix-bottom-line rounded-lg">
+                                                    <div class="col-12 col-md-4 col-lg-6 mb-2 mb-sm-0 pb-2 pb-md-0">
+                                                        <div class="pix-px-15">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="pix-heading-el text-left ">
+                                                                    <div>
+                                                                        <div class="slide-in-container">
+                                                                            <h6 class="text-primary font-weight-bold heading-text el-title_custom_color mb-12"
+                                                                                style="" data-anim-type=""
+                                                                                data-anim-delay="0"> Manual Token
+                                                                                Buyback</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_1_title d-md-flex align-items-center justify-content-center">
+                                                        &check;
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-secondary">
+                                                            <i
+                                                                class="pixicon-check-circle-2 mr-2 text-secondary"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_2_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            <i class="pixicon-check-circle-2 mr-2 text-white"></i>Yes
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col mt-2 mt-sm-0 text-center pix_comparison_3_title d-md-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="text-center  font-weight-bold    d-flex align-items-center justify-content-center text-white">
+                                                            No</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="contact" class="contact section-padding">
+                    <div class="container">
+                        <div class="heading text-center">
+                            <div class="animated" data-animation="fadeInUpShorter" data-animation-delay="0.3s"
+                                style="animation-delay: 0.3s; opacity: 0;">
+                                <h1 class="title">Contact</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-8 col-md-12 mx-auto">
+                                <ul class="list-unstyled contact-info pb-5 mb-5">
+                                    <li class="animated" data-animation="fadeInUpShorter" data-animation-delay="0.6s"
+                                        style="animation-delay: 0.6s; opacity: 0;">
+                                        <i class="ti-email"></i>
+                                        <span class="ml-1">cosmicsafuu@gmail.com</span>
+                                    </li>
+                                    <li class="animated" data-animation="fadeInUpShorter" data-animation-delay="0.7s"
+                                        style="animation-delay: 0.7s; opacity: 0;">
+                                        <a href="https://t.me/cosmicsafuu" target="_blank">
+                                            <i class="ti-comment-alt"></i>
+                                            <span class="ml-1">Join us on Telegram</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <footer class="footer static-bottom footer-dark footer-custom-class" data-midnight="white">
+        <div class="container">
+            <div class="footer-wrapper">
+                <div class="copy-right mx-auto text-center">
+                    <span class="copyright">Copyright © 2022, cosmicsafuu.finance</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="files/vendors.js"></script>
+<script src="files/flipclock.js"></script>
+<script src="files/swiper.js"></script>
+<script src="files/particles.js"></script>
+<script src="files/jquery.js"></script>
+<script src="files/theme.js"></script>
+<script src="files/demo.js"></script>
+<script src="files/particles-type1.js"></script>
